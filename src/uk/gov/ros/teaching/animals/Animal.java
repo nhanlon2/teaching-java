@@ -3,10 +3,12 @@ package uk.gov.ros.teaching.animals;
 import java.io.File;
 //Animal is not public - client code outside the package cannot see this type
 class Animal implements IAnimal {
-	//static fields and methods come first, public before private
+	//static fields come first, public before private
 	public static final String UNKNOWN_TYPE = "unknown";
 	private static final int TEMPERATURE_DIFFERENCE = 14;
 	private static final int BODY_TEMPERATURE = 37;
+	
+	//###########Initialisation blocks ###########
 	//this is a static block - it will run once when the class is loaded
 	static {
 		try {
@@ -19,12 +21,11 @@ class Animal implements IAnimal {
 			//throw e;
 		}
 	}
-	static void displayInfo(Animal a) {
-		System.out.println("Static display of Generic animal " + a.getAnimalType());
-	}
 	//instance fields come before constructor, public before private
 	private String animalType = UNKNOWN_TYPE;
 	private int costToFeed;
+	
+	//###########Initialisation blocks ###########
 	// this is an instance block, it will run every time an object is created, before the constructor(s) run
 	{
 		//do stuff - also illegal to throw exceptions here
@@ -58,8 +59,11 @@ class Animal implements IAnimal {
 		this.costToFeed = (getRequiredRoomTemperature() / 2) * 100;
 	}
 	
-	//instance methods come after constructor
-	//public methods come before private
+	static void displayInfo(Animal a) {
+		System.out.println("Static display of Generic animal " + a.getAnimalType());
+	}
+	
+	//instance methods come after constructor, group them logically
 
 	public String getAnimalType() {
 		return animalType;

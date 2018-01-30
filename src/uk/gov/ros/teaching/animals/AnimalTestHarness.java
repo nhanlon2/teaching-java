@@ -25,7 +25,7 @@ public class AnimalTestHarness {
 		System.out.println("Slow animal's type is: "+ saTyped.getAnimalType());// prints unknown....why? Can you fix?
 		System.out.println("Slow Animals cost to feed is: "+saTyped.getCostToFeed());
 		//costToFeed has been initialised correctly for the SlowAnimal class. All constructors that do not
-		//make an explicit call to a parent constructor, make an implicit call
+		//make an explicit call to another constructor, make an implicit call
 		//to their parent class' empty constructor.
 		
 		AmazingAnimal aa = new AmazingAnimal("Amazing");
@@ -33,7 +33,7 @@ public class AnimalTestHarness {
 		AnimalWithCorrectPolymorphism awcp = new AnimalWithCorrectPolymorphism("done correctly");
 		System.out.println("Polymorphic animal's type is: "+ awcp.getAnimalType());
 		
-		//######### Constructors should never call public method #########
+		//######### Constructors should never call public methods #########
 		
 		//DangerousOverrideAnimal doa = new DangerousOverrideAnimal("bit of a mess now");
 		//This will give a null pointer if run - the Animal constructor is invoked by the DangerousOverrideAnimal
