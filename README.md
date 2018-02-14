@@ -117,6 +117,13 @@ Its good design to have a constructor which takes an instance of the class (or a
 Using factories instead of new
 Using factories to decouple client code from concrete instantiations is good practice and an example of Dependency Inversion. In practice we would more likely use a dependency injection framework such as Spring to do this, but classes should not be made into Spring beans just to achieve this.
 
+##Concurrency
+###Threading/Synchronized and Volatile. 
+
+###Performance and deadlock.
+
+###Threadsafe collection types. 
+
 Enums.
 
 Serialisation (singleton)

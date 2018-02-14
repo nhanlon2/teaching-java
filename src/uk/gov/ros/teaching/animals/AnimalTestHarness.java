@@ -7,7 +7,7 @@ public class AnimalTestHarness {
 		//######### Constructor chaining #########
 		
 		FastUnknownAnimal fa  = new FastUnknownAnimal(); //empty constructor is implicit when a class provides no constructors of its own
-		//The implicit empty constructor has the visibility of its class - if FastAnimal were a public class, client
+		//The implicit empty constructor has the visibility of its class - if FastUnknownAnimal were a public class, client
 		//code outside the package could construct Animal's with 'unknown' type - breaking intended encapsulation
 		
 		//Mysterious animal declares its own empty constructor. 
@@ -17,11 +17,12 @@ public class AnimalTestHarness {
 		MysteriousAnimal ma = new MysteriousAnimal();
 		System.out.println("Mysterious animal has a cost to feed of: "+ma.getCostToFeed());
 		
-		//FastAnimal faTypes  = new FastAnimal("Antelope"); //constructors are not inherited so this wont compile
+		//FastUnknownAnimal faTypes  = new FastUnknownAnimal("Antelope"); //constructors are not inherited so this wont compile
 		
 		//SlowAnimal sa = new SlowAnimal(); SlowAnimal has provided a constructor - 
 		//therefore has lost its implicit empty constructor - so the commented code wont compile
 		SlowAnimal saTyped = new SlowAnimal("sloth");
+		
 		System.out.println("Slow animal's type is: "+ saTyped.getAnimalType());// prints unknown....why? Can you fix?
 		System.out.println("Slow Animals cost to feed is: "+saTyped.getCostToFeed());
 		//costToFeed has been initialised correctly for the SlowAnimal class. All constructors that do not
@@ -60,7 +61,7 @@ public class AnimalTestHarness {
 		//The declared types of method parameters affect the choice of overloaded method, not their real types.
 		a.printInfo(a);
 		a.printInfo(fa);
-		a.printInfo(another);
+		a.printInfo(another);// prints info for Animal, not FastUnknownAnimal.
 		
 		//######### STATIC METHODS #########
 		

@@ -34,7 +34,7 @@ class Animal implements IAnimal {
 	
 	//public constructor comes first
 	public Animal(String type) {
-		this();// call empty constructor
+		this();// explicit call to empty constructor - otherwise this would make an **implicit** call to super()
 		if (type == null || type.isEmpty()) {// protecting the class invariant -
 			// all Animals must have a type.
 			throw new IllegalArgumentException("animal must have a type");
@@ -49,7 +49,7 @@ class Animal implements IAnimal {
 		// created in this package. Code outside the
 		// package will not see this constructor and therefore can only create
 		// instances of Animals with a known type.
-		// If having animal instances with the 'unknown' type would an error in
+		// If having animal instances with the 'unknown' type would be an error in
 		// this package, we should remove the 'unknown' type as the default
 		// value and instead make the Animal class abstract.
 
