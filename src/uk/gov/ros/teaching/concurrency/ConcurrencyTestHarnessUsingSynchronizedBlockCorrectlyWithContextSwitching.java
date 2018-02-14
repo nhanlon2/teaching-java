@@ -14,22 +14,21 @@ public class ConcurrencyTestHarnessUsingSynchronizedBlockCorrectlyWithContextSwi
             private int innerCount;
             private Object runLock = new Object();
             
-            synchronized boolean getStop(){
-                return stop;
-            }
-            synchronized void setStop(boolean val) {
-                stop = val;
-            }
             @Override
             public void run() {
-                while (getStop() == false) {
+                while (stop == false) {
                     String type = "animalnumber:" + count++ + " inner count: " + innerCount++ + " thread: "
                             + Thread.currentThread().getId();
                     IAnimal a = animalFactory.makeAnimal(type);
-                    System.out.println(a.getAnimalType());
-                    if (count > 100) {
-                        setStop(true);
-                    }
+                    synchronized (runLock) {
+                    	if(!stop) {
+                    		System.out.println(a.getAnimalType());
+                    	}
+                    	if (count == 101) {
+                    		stop = true;
+                    		System.out.println("Thread "+ Thread.currentThread().getId()+" stopped");
+                    	}
+					}
                 }
             }
         };

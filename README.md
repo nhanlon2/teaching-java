@@ -102,7 +102,7 @@ For hibernate entities etc do not use database IDs that will be modified by the 
 
 	https://dzone.com/articles/why-should-you-care-about-equals-and-hashcode 
 
-**or read ‘Effectice Java’.**
+**or read ‘Effective Java’.**
 
 ##Immutability
 **As far as possible, design classes to be immutable.** This increases encapsulation and it also ensures thread safety. Only expose set methods on fields when strictly necessary.
@@ -118,6 +118,11 @@ Using factories instead of new
 Using factories to decouple client code from concrete instantiations is good practice and an example of Dependency Inversion. In practice we would more likely use a dependency injection framework such as Spring to do this, but classes should not be made into Spring beans just to achieve this.
 
 ##Concurrency
+Threads can context switch at any point, even in a synchronized block. However they will not give up the lock monitor unless they finish executing in the synchronized block or they call wait().
+A volatile variable establishes a wait before relationship with all threads that use it. However it does not ensure memory consistency cannot be
+corrupted by thread interference.
+Incrementing primitives using ++ is not atomic.
+Any changes to a variable made in a synchronized block are visible to all other threads and memory consistency is assured.
 ###Threading/Synchronized and Volatile. 
 
 ###Performance and deadlock.

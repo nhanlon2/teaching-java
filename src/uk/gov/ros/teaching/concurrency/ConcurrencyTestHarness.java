@@ -5,7 +5,6 @@ import uk.gov.ros.teaching.animals.IAnimal;
 
 public class ConcurrencyTestHarness {
     private static int count = 0;
-    private AnimalFactory animalFactory = new AnimalFactory();
     private boolean stop;
 
     public void runStuff() {
@@ -17,10 +16,13 @@ public class ConcurrencyTestHarness {
             public void run() {
                 while (stop == false) {
                     String type = "animalnumber:" + count++ + " inner count: " + innerCount++ + " thread: " + Thread.currentThread().getId();
-                    IAnimal a = animalFactory.makeAnimal(type);
-                    System.out.println(a.getAnimalType());
-                    if (count > 100) {
+                    IAnimal a = AnimalFactory.makeAnimal(type);
+                    if(!stop) {
+                    	System.out.println(a.getAnimalType());
+                    }
+                    if (count == 101) {
                         stop = true;
+                        System.out.println("Thread "+ Thread.currentThread().getId()+" stopped");
                     }
                 }
             }

@@ -20,9 +20,12 @@ public class ConcurrencyTestHarnessUsingSynchronizedBlockWrongly {
                     synchronized (runLock) {
                         String type = "animalnumber:" + count++ + " inner count: " + innerCount++ + " thread: " + Thread.currentThread().getId();
                         IAnimal a = animalFactory.makeAnimal(type);
-                        System.out.println(a.getAnimalType());
-                        if (count > 100) {
+//                        if(!stop) {
+//                        	System.out.println(a.getAnimalType()); //uncommenting this will cause all threads to stop at 100 exactly (why?)
+//                        }
+                        if (count == 101) {
                             stop = true;
+                            System.out.println("Thread "+ Thread.currentThread().getId()+" stopped");
                         }
                     }
                 }
