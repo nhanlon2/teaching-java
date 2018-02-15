@@ -41,7 +41,9 @@ public class ConcurrencyTestHarness {
     //2) Also note that some threads will continue to execute even after stop=true.
     //3) Also note that count and innerCount will sometimes not match
     //4) The threads all interleave and run at random, you cannot tell which thread will start first or which will finish first
-    //5) All threads are seeing the value of stop as no thread runs with a value of > 100 for animal number.
+    //5) All threads are seeing the value of 'stop' as no thread runs with a value of > 100 for animal number. Note, however, this is not guaranteed - 
+    // see the DelayWriteUsingVolatile example. Our example works because the JVM has decided not to hoist 'stop' out of the while loop.
+    // This code could be deployed on an older JVM which would instead hoist the variable. Two of the threads might never stop in that case.
     public static void main(String [] args) {
         ConcurrencyTestHarness testee = new ConcurrencyTestHarness();
         testee.runStuff();

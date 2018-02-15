@@ -36,8 +36,10 @@ public class ConcurrencyTestHarnessUsingVolatileBoolean {
         threadThree.start();
 
     }
-    // With the stop as volatile you will (usually) not see execution after stop = true
-    // If you remove the volatile modifier, some threads will still execute after stop=true
+    //using volatile has no effect here - on my jvm. However, see the DelayWriteUsingVolatile example
+    //Whenever variables are shared between threads the result is non deterministic unless those variables are
+    //accessed through a synchronized block or are volatile. This code could be deployed on another JVM and
+    // two of the threads might never terminate.
     public static void main(String [] args) {
         ConcurrencyTestHarnessUsingVolatileBoolean testee = new ConcurrencyTestHarnessUsingVolatileBoolean();
         testee.runStuff();

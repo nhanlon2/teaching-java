@@ -9,7 +9,8 @@ public class ConcurrencyTestHarnessUsingSynchonizedCounter {
     private boolean stop;
     
     synchronized int getAndIncrementCount() {
-        return count++;// this operation is not atomic - it incorporates a get and a set, hence we encapsulate it in this synchronised method
+        return count++;// the '++' operation is not atomic - it incorporates a get and a set.
+        // hence we encapsulate it in this synchronised method
     }
     
     public void runStuff() {
