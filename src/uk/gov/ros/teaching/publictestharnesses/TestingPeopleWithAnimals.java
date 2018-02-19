@@ -20,9 +20,9 @@ public class TestingPeopleWithAnimals {
 				return super.getAgeInConfidence();
 			};
 		};
+		System.out.println(daveAgeRevealed.getClass().getName());
 		Person daveAgeModifiedAsIntended = new Person("Dave",53);
-		//just a hack here  - this advances the 'createdOn' date value in the person class. In production code we would need to use something
-		//more accurate that a Date comparison.
+		//just a hack here  - this advances the 'createdOn' date value in the person class.
 		sleep();
 		//########### Copy Constructor ###########
 		Person daveCopied = new Person(daveAgeModifiedAsIntended);
@@ -40,7 +40,7 @@ public class TestingPeopleWithAnimals {
 		System.out.println("Dave age revealed and modified represent the same thing: "+daveAgeModifiedAsIntended.equals(daveAgeRevealed));
 		//these two objects should be equals() regardless of when created as they use the copy constructor
 		System.out.println("Dave age revealed and copied represent the same thing: "+daveAgeModifiedAsIntended.equals(daveCopied));
-		//but these two have a differnt date value
+		//but these two have a different date value
 		System.out.println("Dave age revealed and another represent the same thing: "+daveAgeModifiedAsIntended.equals(anotherDaveAge53));
 	}
 
