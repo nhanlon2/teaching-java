@@ -28,8 +28,6 @@ public class PeopleTestHarness {
 			}
 		};
 		
-		System.out.println("Anonymous class "+testPerson.toString());// NOT the same result as an instance of Person
-		
 		//########### Copy Constructor ###########
 		//We only want to expose IPerson to client code therefore we use the copy/convert constructor of Person
 		// to achieve this.
@@ -75,6 +73,10 @@ public class PeopleTestHarness {
 		System.out.println("WellSlowCopy and  discretePerson  represent the same thing: "+discretePerson.equals(wellPersonSlow));
 		//and B!=C, they have a different date value
 		System.out.println("WellQuickCopy and WellSlowCopy represent the same thing: "+wellPersonQuick.equals(wellPersonSlow));
+		
+		//########### using the PersonWithBuilder class ###########
+		PersonWithBuilder pwb = new PersonWithBuilder.PersonBuilder().setAge(10).setName("Dave").build();
+		
 	}
 	
 	private static void sleep() {

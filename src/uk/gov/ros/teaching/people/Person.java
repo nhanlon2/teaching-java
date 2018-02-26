@@ -34,14 +34,14 @@ public class Person extends PersonWithConfidentialAge implements IPerson{
 	
 	//########### Copy Constructor reading private fields of same class###########
 	public Person(Person anOther){
-		//private scoped members of this class are visible directly
 		super(anOther.getName(),anOther.age);
+		//private scoped members of this class are visible directly
 		this.createdOn = anOther.createdOn;
 	}
 	
 	//########### Overriding Equals() and Hashcode() ###########
 	
-	//Note this violates symmetry and transitivty with the parent class - can you see why?
+	//Note this violates symmetry and transitivity with the parent class - can you see why?
 	@Override
 	public boolean equals(Object obj) {
 		if(this==obj) {

@@ -43,9 +43,9 @@ package uk.gov.ros.teaching.people;
 	public int hashCode() {
 		//two objects that are equals() MUST have the same hashcode
 		//two objects that are not equals() can have the same hashcode, that is OK
-		//for example: 'Dave' age 17 will have the same hashcode and 'Dave' age 34.
+		//for example: 'Dave' age 17 will have the same hashcode as 'Dave' age 34.
 		//these two objects will not be equals but they will map to the same bucket in any HashMap used to store them.
-		//Such hashing collisions, if kept rare, do not affect performance of HashMaps
+		//Such hashing collisions, **if kept rare**, do not affect performance of HashMaps too badly
 		return name.hashCode() + age%17;
 	}
 	
