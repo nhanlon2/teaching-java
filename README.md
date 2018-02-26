@@ -135,11 +135,11 @@ A volatile variable establishes a wait before relationship with all threads that
 but it is difficult to use volatile correctly.
 
 Preferr synchronized blocks over synchronized methods and make the blocks as small as possible. Preventing context switching
-will have drastically reduce performance in any multi cpu environment. Smaller blocks are less likely to result in deadlock
+will drastically reduce performance in any multi cpu environment. Smaller blocks are less likely to result in deadlock
 and other bugs. Use specific object locks on these blocks making synchronization more fine grained, which will also help
 prevent deadlocks.
 
-Never call any method that can be overridden from a synchronized block (for the similar reasons as to why a constructor should not do so).
+Never call any method that can be overridden from a synchronized block (the reasons are on the same lines as to why a constructor should not call a method that can be overriden).
 
 ### Deadlock.
 Badly designed synchronization can result in deadlock where two threads wait for each other to relinquish their lock monitors.
