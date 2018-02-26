@@ -39,7 +39,7 @@ What is inherited? Inherited code is visible on the local object’s instance of
 
 **Always use the @Overrides annotation to get compile time checking that ensures you are overriding a method correctly, especially with equals().** Overriding involves a child class implementing the a method with the same name and signature as method it has inherited in a parent class. (Therefore private, final or static methods may not be overridden). The overriding method may have wider access than the parent method and it may throw fewer exceptions than the parent method. Overriding occurs at runtime, regardless of the declared type of an object reference the JVM dispatches method calls to the actual type. 
 
-In contract overloading occurs at compile time. When two methods have the same name but different signature (different method parameters) then the compiler will bind calls to that method name based on the declared types of the arguments passed to the method.
+In contrast overloading occurs at compile time. When two methods have the same name but different signature (different method parameters) then the compiler will bind calls to that method name based on the declared types of the arguments passed to the method.
 When there is any overlap between method signatures, **the compiler links to the most specific matching method signature**. The most specific type for a parameter is the one furthest down the inheritance chain. For example  - given a Person class that implements an IPerson interface and given a method signature in a Util class,  ‘print(IPerson p)’ and ‘print(Person p)’. See the Util code for an example.
 
 Widening of scope in inherited overridden methods.
