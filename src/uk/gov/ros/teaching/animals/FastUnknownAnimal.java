@@ -9,7 +9,7 @@ package uk.gov.ros.teaching.animals;
 class FastUnknownAnimal extends Animal{
 	//static methods are not Polymorphic - this does not override the static displayInfo method in the parent - it hides it
 	static void displayInfo(Animal a) {
-		System.out.println("Static display of Fast Unknown animal " + a.getAnimalType());
+		System.out.println("Static display by Fast Unknown animal of a " + a.getAnimalType());
 	}
 	
 	//FastAnimal declares no constructor therefore it is given the default, public, empty constructor. This constructor

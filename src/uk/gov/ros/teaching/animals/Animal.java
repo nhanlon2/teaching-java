@@ -60,7 +60,7 @@ class Animal implements IAnimal {
 	}
 	
 	static void displayInfo(Animal a) {
-		System.out.println("Static display of Generic animal " + a.getAnimalType());
+		System.out.println("Static display by Generic animal of a " + a.getAnimalType());
 	}
 	
 	//instance methods come after constructor, group them logically
