@@ -6,7 +6,7 @@ import uk.gov.ros.teaching.animals.IAnimal;
 public class ConcurrencyTestHarnessUsingVolatileBoolean {
     private static int count = 0;
     private AnimalFactory animalFactory = new AnimalFactory();
-    private boolean stop;
+    private volatile boolean stop;
 
     public void runStuff() {
 

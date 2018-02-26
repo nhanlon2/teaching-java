@@ -1,17 +1,17 @@
 package uk.gov.ros.teaching.concurrency;
 
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import uk.gov.ros.teaching.animals.AnimalFactory;
 import uk.gov.ros.teaching.animals.IAnimal;
 
-public class ConcurrencyTestHarnessUsingSynchonizedCounter {
-    private static int count = 0;
+public class ConcurrencyTestHarnessUsingAtomicCounter {
+    private static AtomicInteger count = new AtomicInteger();
+    private ConcurrentMap<Integer, Integer> animalTypes = new ConcurrentHashMap<>();
     private AnimalFactory animalFactory = new AnimalFactory();
     private boolean stop;
-    
-    synchronized int getAndIncrementCount() {
-        return count++;// the '++' operation is not atomic - it incorporates a get and a set.
-        // hence we encapsulate it in this synchronised method
-    }
     
     public void runStuff() {
 
@@ -21,13 +21,21 @@ public class ConcurrencyTestHarnessUsingSynchonizedCounter {
             @Override
             public void run() {
                 while (stop == false) {
-                    String type = "animalnumber:" + getAndIncrementCount() 
+                    int localCount = count.getAndIncrement();
+                    String type = "animalnumber:" + localCount
                     + " inner count: " + innerCount++ + " thread: " + Thread.currentThread().getId();
                     IAnimal a = animalFactory.makeAnimal(type);
+                    if(animalTypes.containsKey(localCount)) {
+                        stop = true;
+                        throw new RuntimeException("Duplicate animal numbers detected");
+                    } else {
+                        animalTypes.putIfAbsent(localCount, localCount);
+                    }
+                    
                     if(!stop) {
                     	System.out.println(a.getAnimalType());
                     }
-                    if (count == 101) {
+                    if (localCount == 100) {
                         stop = true;
                         System.out.println("Thread "+ Thread.currentThread().getId()+" stopped");
                     }
@@ -45,7 +53,7 @@ public class ConcurrencyTestHarnessUsingSynchonizedCounter {
     // Animal number does not go up in sequence - however there are NEVER any duplicate animal numbers now (why?)
     // Some threads will still execute after stop=true (why?)
     public static void main(String [] args) {
-        ConcurrencyTestHarnessUsingSynchonizedCounter testee = new ConcurrencyTestHarnessUsingSynchonizedCounter();
+        ConcurrencyTestHarnessUsingAtomicCounter testee = new ConcurrencyTestHarnessUsingAtomicCounter();
         testee.runStuff();
     }
 
