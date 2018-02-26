@@ -42,8 +42,9 @@ What is inherited? Inherited code is visible on the local object’s instance of
 In contrast overloading occurs at compile time. When two methods have the same name but different signature (different method parameters) then the compiler will bind calls to that method name based on the declared types of the arguments passed to the method.
 When there is any overlap between method signatures, **the compiler links to the most specific matching method signature**. The most specific type for a parameter is the one furthest down the inheritance chain. For example  - given a Person class that implements an IPerson interface and given a method signature in a Util class,  ‘print(IPerson p)’ and ‘print(Person p)’. See the Util code for an example.
 
-Widening of scope in inherited overridden methods.
-When declaring methods as protected scoped (which is usually done in order to make the method accessible to unit tests while not being public) be aware of the fact that any child class will inherit such methods and can widen the accessibility to public - breaking any intended encapsulation. If it is really necessary to change accessibiity of methods for testing purposes then use default scope.
+Widening of scope in inherited overridden methods:
+
+When declaring methods as protected scoped (which is unfortunately often done spuriously in order to make the method accessible to unit tests, while not being public) be aware of the fact that any child class will inherit such methods and can widen the accessibility to public - breaking any intended encapsulation. If it is really necessary to change accessibiity of methods for testing purposes (it should not be) then use default scope. A better solution to changing the encapsulation of a class in order to make it 'testable' is to refactor that class - consider creating a new class that exposes the methods to be tested - these methods could be public on the new class; but the new class could be default scoped.
 
 ## Inner classes
 Inner classes can be non-static or static. Static inner classes are easier to understand, as they do not need an enclosing instance of 
