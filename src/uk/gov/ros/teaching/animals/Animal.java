@@ -38,6 +38,8 @@ class Animal implements IAnimal {
 		if (type == null || type.isEmpty()) {// protecting the class invariant -
 			// all Animals must have a type.
 			throw new IllegalArgumentException("animal must have a type");
+			//Another typical exception to throw is `IllegalStateException` - throw this when
+			//invocation of a method is invalid due to the existing state of the method's object
 		}
 		this.animalType = type;
 	}

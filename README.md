@@ -86,7 +86,7 @@ When implementing equals:
 **For this reason, using inheritance can complicate the task of implementing equals and hashcode correctly.**
 
 Any fields that are used for comparison should be genuinely relevant - for example do not use a database identifier for equals when this is a field that might be unset until an object is persisted to the database by framework code.
-**Equals() must be symmetrical : if A.equals(B) is true then B.equals(A) is true.**
+** Equals() must be symmetrical : if A.equals(B) is true then B.equals(A) is true.**
 ** Equals() must be transitive : if A.equals(B) is true and A.equals(C) is true then C.equals(B) must also be true. **
 It can be difficult to get do this correctly, especially when child classes can inherit the equals() method you create. 
 **If a child class overrides equals and includes a new field in the comparison, symmetry and transitivity are always broken. **
