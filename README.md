@@ -34,6 +34,8 @@ These can be static and non static. Static blocks load once per classloader, non
 
 6) constructor of the class.
 
+Blocks of the same type are executed in the order in which they appear in the code.
+
 ## Instantiation of an object
 When an object is created, the order of instantiation is: static members and blocks, instance members and blocks, then the constructor.
 
