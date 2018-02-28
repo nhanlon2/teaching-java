@@ -20,7 +20,19 @@ By convention, declaration of members in a .java compilation unit should follow 
 See: https://web.archive.org/web/20130516014426/http://www.oracle.com/technetwork/java/codeconventions-141855.html#1852
 
 ## Initialisation blocks
-These can be static and non static. Static blocks load once per classloader, non static blocks load once per object initialisation, before any constructors run.
+These can be static and non static. Static blocks load once per classloader, non static blocks load once per object initialisation, before any constructors run. The order of execution is:
+
+1) static initialization blocks of super classes
+
+2) static initialization blocks of the class
+
+3) instance initialization blocks of super classes
+
+4) ** constructors of super classes **
+
+5) instance initialization blocks of the class
+
+6) constructor of the class.
 
 ## Instantiation of an object
 When an object is created, the order of instantiation is: static members and blocks, instance members and blocks, then the constructor.

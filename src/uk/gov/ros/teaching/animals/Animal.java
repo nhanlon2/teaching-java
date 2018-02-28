@@ -27,6 +27,7 @@ class Animal implements IAnimal {
 	
 	//###########Initialisation blocks ###########
 	// this is an instance block, it will run every time an object is created, before the constructor(s) run
+	// HOWEVER - note that constructors in superclasses will run before this initialisation block
 	{
 		//do stuff - also illegal to throw exceptions here
 		//throw new IllegalArgumentException();
