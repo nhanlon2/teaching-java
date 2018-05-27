@@ -1,9 +1,9 @@
 package uk.gov.ros.teaching.people;
 
 import java.util.Date;
-
+//###########The Builder Pattern ###########
 public class PersonWithBuilder implements IPerson {
-
+  //###########Inner Classes ###########
     public static class PersonBuilder {
         private int age;
         private String name;

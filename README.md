@@ -20,7 +20,21 @@ By convention, declaration of members in a .java compilation unit should follow 
 See: https://web.archive.org/web/20130516014426/http://www.oracle.com/technetwork/java/codeconventions-141855.html#1852
 
 ## Initialisation blocks
-These can be static and non static. Static blocks load once per classloader, non static blocks load once per object initialisation, before any constructors run.
+These can be static and non static. Static blocks load once per classloader, non static blocks load once per object initialisation, before any constructors run. The order of execution is:
+
+1) static initialization blocks of super classes
+
+2) static initialization blocks of the class
+
+3) instance initialization blocks of super classes
+
+4) ** constructors of super classes **
+
+5) instance initialization blocks of the class
+
+6) constructor of the class.
+
+Blocks of the same type are executed in the order in which they appear in the code.
 
 ## Instantiation of an object
 When an object is created, the order of instantiation is: static members and blocks, instance members and blocks, then the constructor.
@@ -86,7 +100,7 @@ When implementing equals:
 **For this reason, using inheritance can complicate the task of implementing equals and hashcode correctly.**
 
 Any fields that are used for comparison should be genuinely relevant - for example do not use a database identifier for equals when this is a field that might be unset until an object is persisted to the database by framework code.
-**Equals() must be symmetrical : if A.equals(B) is true then B.equals(A) is true.**
+** Equals() must be symmetrical : if A.equals(B) is true then B.equals(A) is true.**
 ** Equals() must be transitive : if A.equals(B) is true and A.equals(C) is true then C.equals(B) must also be true. **
 It can be difficult to get do this correctly, especially when child classes can inherit the equals() method you create. 
 **If a child class overrides equals and includes a new field in the comparison, symmetry and transitivity are always broken. **

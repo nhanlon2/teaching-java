@@ -27,6 +27,7 @@ class Animal implements IAnimal {
 	
 	//###########Initialisation blocks ###########
 	// this is an instance block, it will run every time an object is created, before the constructor(s) run
+	// HOWEVER - note that constructors in superclasses will run before this initialisation block
 	{
 		//do stuff - also illegal to throw exceptions here
 		//throw new IllegalArgumentException();
@@ -38,6 +39,8 @@ class Animal implements IAnimal {
 		if (type == null || type.isEmpty()) {// protecting the class invariant -
 			// all Animals must have a type.
 			throw new IllegalArgumentException("animal must have a type");
+			//Another typical exception to throw is `IllegalStateException` - throw this when
+			//invocation of a method is invalid due to the existing state of the method's object
 		}
 		this.animalType = type;
 	}
