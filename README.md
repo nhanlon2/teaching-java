@@ -188,9 +188,42 @@ Serialisation (singleton)
 
 Generics
 
+A method that can accept a List<T> cannot accept a List<U>, even if U extends T. For example:
+
+public void print(List<Object>) cannot accept a List<String>. If it did, then it would be possible to 
+add an Object to the List<String> - the List would be corrupted.
+
+If you need a method that can accept either a List<String> or a List<Object> you need to use an upper bounded wildcard
+
+public void print(List<? extends Object>)  - Object is the upper bound. This method will accept a List<String> as a 
+parameter. The method body will process the parameter as a List<? extends Object>. Any items taken out of that List
+will be treated a type Object. It is NOT possible to add an item to a List<? extends Object> as we do NOT know what
+the actual List type is (it could be a List<String>!). However, it is possible to add null. This List is a producer
+of items of type Object. Producer EXTENDS.
+
+In order to be able to add Items to bounded List it must use a wildcard with a lower bound. Therefore if we have
+a List<? super String>, we know we can add a String to this List. The List is a Consumer of our items. Consumer SUPER.
+
+The acronym is PECS. With Java Functional interfaces, a Supplier is a producer or Items, therefore a supplier will
+have signature of Supplier <? extends Number>. For example:
+public void print(Supplier<?extends Number>). This method can take a Supplier of type <Double> or <Integer>. Any item
+we take from this Supplier (using get()) will be of type Number.
+
+A Consumer will have signature <? super Number>. For example
+public void collectInto (Consumer<? super Number> ). This method will accept a Consumer <Number> or a Consumer <Object>.
+The accept method of this Consumer will take a Number as an argument or an Object (or null).
+
+Note - if you want to put things in and take things out of a Collection, you must use a specific type and not a wildcard
+bounded type.
+
+If you want a method to accept any type of eg List you can use List<?>. This is the same as List<?extends Object>. You
+can take items from this List; they will be type Object. You cannot insert any item into this List except null.
+
 Lambdas
 
 Streams
+
+Functional Interfaces
 
 Design patterns
 
