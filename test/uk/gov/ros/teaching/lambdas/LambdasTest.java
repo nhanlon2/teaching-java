@@ -23,7 +23,7 @@ public class LambdasTest {
 		testee = new Lambdas();
 		testRoot = Files.createTempDirectory("lambdatests");
 	}
-
+	
 	@Test
 	public void shouldReturnEmptyListForEmptyDir() throws IOException {
 		assertEquals(0,testee.getSubDirectories(testRoot.toFile()).size());
@@ -85,6 +85,16 @@ public class LambdasTest {
 //			r.run();
 //		}
 //	}
+	public void runnersTradExperiment() throws IOException {
+		String [] names = {"Dave","Bob","Sue"};
+		List <Runnable> runners = new ArrayList<>();
+		for (int i=0;i<names.length;i++){
+			//runners.add(()->System.out.println(names[i])); //wont compile since 'i' must be effectively final!
+		}
+		for (Runnable r: runners){
+			r.run();
+		}
+	}
 	
 	@Test
 	public void optionalTest1(){
