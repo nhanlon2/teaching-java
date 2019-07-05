@@ -1,6 +1,8 @@
 package uk.gov.ros.teaching.lambdas;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -61,6 +63,17 @@ public class LambdasTest {
 			r.run();
 		}
 	}
+	@Test
+	public void testSwapFunction() {
+	    assertTrue(testee.swapTrueWithFalse.apply(Boolean.FALSE));
+	    assertFalse(testee.swapTrueWithFalse.apply(Boolean.TRUE));
+	}
+	
+	@Test
+    public void sort() {
+        
+    }
+	
 //	@Test
 //	public void runnersTradExperiment() throws IOException {
 //		String [] names = {"Dave","Bob","Sue"};

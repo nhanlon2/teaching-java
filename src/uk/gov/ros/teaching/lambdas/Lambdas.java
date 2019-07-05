@@ -5,6 +5,9 @@ import java.io.FileFilter;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -40,8 +43,28 @@ public class Lambdas {
 		return currentDir.listFiles(f -> f.toPath().endsWith(ext));
 	}
 	
+	public Function <Boolean, Boolean> swapTrueWithFalse  = (Boolean b)-> {return !b;};
+
 	
+	public  Boolean and(Boolean a, Boolean b) {
+	    return a && b;
+	}
 	
+	public <T> String displayCollection(Iterable <T>collection) {
+	    StringBuilder builder = new StringBuilder();
+	    for (T elem: collection) {
+	        builder.append(elem.toString());
+	    }
+	    return builder.toString();
+	}
+	
+    public <T extends Comparable<T>> void sort(List<T> unsorted) {
+        Comparator<T> comparator = (a, b) -> {
+            return a.compareTo(b);
+        };
+        Comparator<? super T> comp = null;
+        Collections.sort(unsorted, comparator);
+    }
 	
 
 }
